@@ -6,8 +6,10 @@ services:
     command:
       - serve
     environment:
-      - TZ=Europe/Athens    # optional: Change to your desired timezone
-    user: UID:GID # optional: Set custom user/group or uid/gid
+      - TZ=Europe/Athens
+      - PUID=${PUID}  # Set user ID dynamically
+      - PGID=${PGID}  # Set group ID dynamically
+    user: "${PUID}:${PGID}"  # Use variables for UID/GID
     volumes:
       - /var/cache/ntfy:/var/cache/ntfy
       - /etc/ntfy:/etc/ntfy
